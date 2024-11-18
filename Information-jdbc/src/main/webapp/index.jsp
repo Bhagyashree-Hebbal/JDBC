@@ -32,7 +32,7 @@
         margin-bottom: 5px;
         color: #666;
     }
-    input[type="text"], input[type="email"], input[type="name"] {
+    input[type="text"], input[type="email"], input[type="name"], input[type="number"] {
         width: 100%;
         padding: 10px;
         margin-bottom: 10px;
@@ -81,6 +81,16 @@
                 <label>Address</label>
                 <input type="text" name="address" required="required">
                 <span class="error" id="addressError"></span>
+            </div>
+            <div>
+                <label>Phone No</label>
+                <input type="number" name="phoneNo" required="required">
+                <span class="error" id="phoneNoError"></span>
+            </div>
+            <div>
+                <label>Age</label>
+                <input type="number" name="age" required="required">
+                <span class="error" id="ageError"></span>
             </div>
             <input type="submit" value="Submit">
         </form>

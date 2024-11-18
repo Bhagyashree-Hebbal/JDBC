@@ -24,21 +24,27 @@ public class ProductServlet extends HttpServlet {
 
 		String productId = req.getParameter("productId");
 		String productName = req.getParameter("productName");
-		String productType = req.getParameter("productType");
 		String price = req.getParameter("price");
-		String customerId = req.getParameter("customerId");
 		String customerName = req.getParameter("customerName");
+		String phoneNo = req.getParameter("phoneNo");
+		String email = req.getParameter("email");
+		String age = req.getParameter("age");
 
 		int convertedProductId = Integer.valueOf(productId);
 		double convertedPrice = Double.valueOf(price);
-		int convertedCustomerId = Integer.valueOf(customerId);
+		int convertedAge = Integer.valueOf(age);
 
-		ProductDTO productDTO = new ProductDTO(convertedProductId, productName, productType, convertedPrice,convertedCustomerId, customerName);
+		ProductDTO productDTO = new ProductDTO(convertedProductId, productName, convertedPrice, customerName, phoneNo,email, convertedAge);
 
 		ProductServiceImpl productServiceImpl = new ProductServiceImpl();
-		productServiceImpl.save(productDTO);
-
-		RequestDispatcher dispatcher = req.getRequestDispatcher("index.jsp");
+		boolean validProduct = productServiceImpl.save(productDTO);
+		RequestDispatcher dispatcher = req.getRequestDispatcher("msg.jsp");
+		if (validProduct) {
+			System.out.println("Data is valid");
+			req.setAttribute("productName", productDTO.getProductName());
+		} else {
+			System.out.println("Data is in-valid");
+		}
 		dispatcher.forward(req, resp);
 	}
 }

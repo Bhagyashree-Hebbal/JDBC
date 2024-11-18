@@ -14,22 +14,31 @@ import com.xworkz.information.service.AppServiceImpl;
 
 @WebServlet(loadOnStartup = 1, urlPatterns = "/submit")
 public class AppServlet extends HttpServlet {
-	  
-    public AppServlet() {
-        System.out.println("no-arg const in AppServlet");
-    }
-	
+
+	public AppServlet() {
+		System.out.println("no-arg const in AppServlet");
+	}
+
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String name = req.getParameter("name");
 		String lastName = req.getParameter("lastName");
 		String email = req.getParameter("email");
 		String address = req.getParameter("address");
+		String phoneNo = req.getParameter("phoneNo");
+		String age = req.getParameter("age");
 
-		AppDTO appDTO = new AppDTO(name, lastName, email, address);
+		int convertedAge = Integer.valueOf(age);
+
+		AppDTO appDTO = new AppDTO(name, lastName, email, address, phoneNo, convertedAge);
 		AppServiceImpl appServiceImpl = new AppServiceImpl();
-		appServiceImpl.save(appDTO);
-		
-		RequestDispatcher dispatcher = req.getRequestDispatcher("index.jsp");
+		boolean validApp = appServiceImpl.save(appDTO);
+		RequestDispatcher dispatcher = req.getRequestDispatcher("msg.jsp");
+		if (validApp) {
+			System.out.println("Data is valid");
+			req.setAttribute("name", appDTO.getName());
+		} else {
+			System.out.println("Data is in-valid");
+		}
 		dispatcher.forward(req, resp);
 	}
 

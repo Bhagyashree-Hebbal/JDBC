@@ -23,23 +23,25 @@ public class AppRepoImpl implements AppRepo {
 		try {
 			Connection connection = null;
 
-			connection = DriverManager.getConnection(AppEnum.URL.getValue(), AppEnum.USERNAME.getValue(),
-					AppEnum.PASSWORD.getValue());
+			connection = DriverManager.getConnection(AppEnum.URL.getValue(), AppEnum.USERNAME.getValue(),AppEnum.PASSWORD.getValue());
 
 			PreparedStatement prest = null;
 
-			prest = connection.prepareStatement("INSERT INTO app_table(name,lastName,email,address) values(?,?,?,?)");
+			prest = connection.prepareStatement("INSERT INTO app_table(name,lastName,email,address,phoneNo,age) values(?,?,?,?,?,?)");
 
 			prest.setString(1, appDTO.getName());
 			prest.setString(2, appDTO.getLastName());
 			prest.setString(3, appDTO.getEmail());
 			prest.setString(4, appDTO.getAddress());
+			prest.setString(5, appDTO.getPhoneNo());
+			prest.setInt(6, appDTO.getAge());
 
 			int value = prest.executeUpdate();
 			if (value > 0) {
 				System.out.println("Data is saved");
 				isValid = true;
 			} else {
+				System.out.println("Data is not saved");
 				isValid = false;
 			}
 

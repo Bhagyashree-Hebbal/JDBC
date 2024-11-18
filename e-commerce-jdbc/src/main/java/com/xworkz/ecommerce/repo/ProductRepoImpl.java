@@ -25,13 +25,14 @@ public class ProductRepoImpl implements ProductRepo {
 			connection = DriverManager.getConnection(ProductEnum.URL.getValue(), ProductEnum.USERNAME.getValue(),ProductEnum.PASSWORD.getValue());
 			PreparedStatement prst = null;
 
-			prst = connection.prepareStatement("insert into product_table(productId,productName,productType,price,customerId,customerName) values(?,?,?,?,?,?)");
+			prst = connection.prepareStatement("insert into product_table(productId, productName, price, customerName, phoneNo, email, age) values(?,?,?,?,?,?,?)");
 			prst.setInt(1, productDTO.getProductId());
 			prst.setString(2, productDTO.getProductName());
-			prst.setString(3, productDTO.getProductType());
-			prst.setDouble(4, productDTO.getPrice());
-			prst.setInt(5, productDTO.getCustomerId());
-			prst.setString(6, productDTO.getCustomerName());
+			prst.setDouble(3, productDTO.getPrice());
+			prst.setString(4, productDTO.getCustomerName());
+			prst.setString(5, productDTO.getPhoneNo());
+			prst.setString(6, productDTO.getEmail());
+			prst.setInt(7, productDTO.getAge());
 
 			int values = prst.executeUpdate();
 			if (values > 0) {

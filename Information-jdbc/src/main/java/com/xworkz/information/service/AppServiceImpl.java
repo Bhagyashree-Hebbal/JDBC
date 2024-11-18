@@ -13,24 +13,33 @@ public class AppServiceImpl implements AppService {
 			isvalid = false;
 		}
 
-		if (appDTO.getName().length() < 3 || appDTO.getName().isEmpty()) {
-			System.out.println("Data is incorrect");
+		if (appDTO.getName().length() < 6 || appDTO.getName().isEmpty()) {
+			System.out.println("Name is in-valid");
 			isvalid = false;
 		}
 
 		if (appDTO.getLastName().length() < 3 || appDTO.getLastName().isEmpty()) {
-			System.out.println("Data is incorrect");
+			System.out.println("Last Name is in-valid");
 			isvalid = false;
 		}
 
-		if (!(appDTO.getEmail().contains("@gmail") && appDTO.getEmail().endsWith(".com")
-				|| appDTO.getEmail().endsWith(".in"))) {
-			System.out.println("Data is in correct");
+		if (appDTO.getEmail() == null && !(appDTO.getEmail().contains("@") && (appDTO.getEmail().endsWith(".com") && appDTO.getEmail().indexOf('@') == 8))) {
+			System.out.println("Email is in-valid");
 			isvalid = false;
 		}
 
 		if (appDTO.getAddress().length() < 5) {
-			System.out.println("Dtat is incorrect");
+			System.out.println("Address is in-valid");
+			isvalid = false;
+		}
+		
+		if (!(appDTO.getPhoneNo().length() == 10 && appDTO.getPhoneNo().startsWith("9"))) {
+			System.err.println("Phone number is in-valid");
+			isvalid = false;
+		}
+
+		if (!(appDTO.getAge() > 5 && appDTO.getAge() <= 65)) {
+			System.err.println("Age is in-valid");
 			isvalid = false;
 		}
 
@@ -39,7 +48,7 @@ public class AppServiceImpl implements AppService {
 			return appRepoImpl.save(appDTO);
 		} else {
 			System.out.println("Data validation failed, not saving.");
-			return false;
+			return isvalid;
 		}
 	}
 }

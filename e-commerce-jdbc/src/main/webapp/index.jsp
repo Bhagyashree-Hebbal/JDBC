@@ -21,20 +21,24 @@
                 <input type="text" class="form-control" id="productName" name="productName" required>
             </div>
             <div class="form-group">
-                <label for="productType">Product Type</label>
-                <input type="text" class="form-control" id="productType" name="productType" required>
-            </div>
-            <div class="form-group">
                 <label for="price">Price</label>
                 <input type="number" class="form-control" id="price" name="price" required>
             </div>
             <div class="form-group">
-                <label for="customerId">Customer Id</label>
-                <input type="number" class="form-control" id="customerId" name="customerId" required>
-            </div>
-            <div class="form-group">
                 <label for="customerName">Customer Name</label>
                 <input type="text" class="form-control" id="customerName" name="customerName" required>
+            </div>
+            <div class="form-group">
+                <label for="phoneNo">Phone No</label>
+                <input type="number" class="form-control" id="phoneNo" name="phoneNo" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" class="form-control" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="age">Age</label>
+                <input type="number" class="form-control" id="age" name="age" required>
             </div>
             <button type="submit" class="btn btn-primary btn-block">Order</button>
         </form>
